@@ -2,6 +2,14 @@
 
 This is a sample job portal project.
 
+## dependencies
+This project will require following dependencies to be installed on your system
+
+- [ ] nodejs
+- [ ] yarn package manager
+- [ ] browser
+- [ ] active internet connection
+
 ## Setup
 
 clone this project to you local using the following command
@@ -10,7 +18,7 @@ clone this project to you local using the following command
 $ git clone https://github.com/iyogeshjoshi/jobPortal.git <path/on/your/machine>
 ```
 
-once it is clone execute the following commands to install and run it
+once it is cloned execute the following commands to install and run it
 
 ```bash
 $ cd <path/to/root>
@@ -25,3 +33,9 @@ $ npx serve -s build
 ```
 
 then open [http://localhost:5000](http://localhost:5000) to run it on any browser.
+
+## running test
+Execute the following command to run tests
+```bash
+$ yarn test
+```
