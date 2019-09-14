@@ -17,6 +17,9 @@ $ cd <path/to/root>
 # installs dependencies
 $ yarn install
 
+# build prod build
+$ yarn build
+
 # runs on your system (needs internet)
 $ npx serve -s build
 ```
