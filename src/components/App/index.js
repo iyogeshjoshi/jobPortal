@@ -13,12 +13,14 @@ import {
 } from "react-bootstrap";
 import SearchInput, { createFilter } from "react-search-input";
 import JobPost from "../JobPost";
+import _ from "underscore";
 
 class App extends PureComponent {
   state = {
     jobs: [],
     query: "",
-    filters: ["title"]
+    filters: ["title"],
+    sortBy: "title"
   };
 
   componentDidMount() {
@@ -41,9 +43,13 @@ class App extends PureComponent {
     }
   };
 
+  sortBy = key => this.setState({ sortBy: key });
+
   render() {
-    const { jobs, query, filters } = this.state;
-    const filteredJobs = jobs.filter(createFilter(query, filters));
+    const { jobs, query, filters, sortBy } = this.state;
+    let filteredJobs = jobs.filter(createFilter(query, filters));
+
+    filteredJobs = _.sortBy(filteredJobs, sortBy);
 
     return (
       <Container>
@@ -82,7 +88,9 @@ class App extends PureComponent {
                       </Col>
                     </Row>
                     <Form.Row>
-                      <Col className="well">
+                      <Col className="text-left">
+                        <Form.Label>Filter By: </Form.Label>
+                        <br />
                         <Form.Check
                           inline
                           name="location"
@@ -100,6 +108,33 @@ class App extends PureComponent {
                           name="experience"
                           label="Experience"
                           onChange={() => this.updateFilter("experience")}
+                        />
+                      </Col>
+                    </Form.Row>
+                    <Form.Row>
+                      <Col className="text-left">
+                        <Form.Label>Sort By: </Form.Label>
+                        <br />
+                        <Form.Check
+                          inline
+                          type="radio"
+                          name="sortBy"
+                          label="Location"
+                          onChange={() => this.sortBy("location")}
+                        />
+                        <Form.Check
+                          inline
+                          type="radio"
+                          name="sortBy"
+                          label="Skills"
+                          onChange={() => this.sortBy("skills")}
+                        />
+                        <Form.Check
+                          inline
+                          type="radio"
+                          name="sortBy"
+                          label="Experience"
+                          onChange={() => this.sortBy("experience")}
                         />
                       </Col>
                     </Form.Row>
